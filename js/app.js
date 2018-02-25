@@ -6,7 +6,8 @@ const formArray = Array.from(form);
 let evenMultiply = 0;
 let numberCardSum = 0;
 let newDigit= 0;
-let arrayName = [];
+// let arrayName = [];
+// let words = Array(a,b,c,d,e,f,g,h,i,j,k,l,m,n,ñ,o,p,q,r,s,t,u,v,w,x,y,z,A,B,C,D,E,F,G,H,I,J,K,L,M,N,Ñ,O,P,Q,R,S,T,U,V,W,X,Y,Z);
 
 
 // Funcion que le da el evento al boton
@@ -18,21 +19,6 @@ form.addEventListener("submit", e => {
     console.log("datos inválidos");
   };
 });
-
-
-// funcion para obtener los datos de cada uno de los inputs del form
-// const getValueInput = element => {
-//     // se crea un let que sera igual a un arreglo nuevo vacio para ingresar los elementos de cada uno de los inputs
-//   let newArrayForm = [];
-// // se llama a la const formArray y se le agrega el metod for each para que itere el arreglo y obtenga los datos de cada input
-//   element.forEach(e => { 
-// // con el metodo push se agrega el valor de cada input dentro del nuevo arreglo 
-//     newArrayForm.push(e.value); 
-//   });
-//   console.log(newArrayForm);
-// //   se retorna el nuevo arreglo
-//   return newArrayForm;
-// };
 
 // Funcion metodo luhn
 const methodLuhn = luhn => {
@@ -70,29 +56,34 @@ const dateCard = date => {
 
 };
 const securityCode = cvv => {
-    console.log('hola soy el indice 3');
+    if (cvv == ''){
+        return borderColor = document.getElementById("cvv").style.borderColor = "#f73131";
+    }
+    if (cvv.length !==  3){
+        return borderColor = document.getElementById("cvv").style.borderColor = "#f73131";
+    }
+    if (cvv.length !== 1) {
+        return borderColor = document.getElementById("cvv").style.borderColor = "purple";
+    }
+    else {
+        return borderColor = document.getElementById("cvv").style.borderColor = "#46ed3d";
+    }
+
 };
 
 const completeName = name => {
-    const fullName = name.split('');
-    console.log(fullName);
-    const arrayFullName = name.map((element, index) =>{
-        console.log(arrayFullName);
-        return arrayFullName;
-
-    }) 
     if (name == ''){
         return borderColor = document.getElementById("name").style.borderColor = "#f73131";
     }
     else if(name.length >= 30){
         return borderColor = document.getElementById("name").style.borderColor = "#f73131";
     }
-    // else (name ==  ) {
-    //     return name.toUpperCase();
-    // }
-            
-
- 
+    else if(name === ' '){
+        return borderColor = document.getElementById("name").style.borderColor = "yellow";
+    }
+    else {
+        return borderColor = document.getElementById("name").style.borderColor = "#46ed3d";
+    }
 };
 
 
