@@ -1,11 +1,12 @@
+// Declarando const y let
 const form = document.querySelector("form");
 // Se declara cun const para convertir el elemento form del html en un array por medio del metodo form
 const formArray = Array.from(form);
 // console.log(formArray); 
-let evenOdd = 0;
+let evenMultiply = 0;
 let numberCardSum = 0;
-let newDigit=0;
-let digits=[]
+let newDigit= 0;
+let arrayName = [];
 
 
 // Funcion que le da el evento al boton
@@ -32,164 +33,96 @@ form.addEventListener("submit", e => {
 // //   se retorna el nuevo arreglo
 //   return newArrayForm;
 // };
-// se manda a llamar a la funcion
 
-
-// Multiplicamos por 2 los dígitos que ocupan las posiciones pares empezando por el final:
-// (1×2) = 2, (8×2) = 16, (3×2) = 6, (2×2) = 4, (9×2) = 18
-// Sumamos los dígitos que ocupaban las posiciones impares con los dígitos de los productos obtenidos:
-// 6 + (2) + 7 + (1+6) + 9 + (6) + 7 + (4) + 9 + (1+8) + 4 = 70
-// Si el resto de dividir el total entre 10 es igual a cero, el número es correcto:
-// 70 mod 10 = 0
-
-// 49927398716.
-
+// Funcion metodo luhn
 const methodLuhn = luhn => {
-    // console.log('hola soy el indice 0');
-    if(luhn == ''){
-        alert('ingresa un numero valido');
+    if(luhn < 16 || luhn == '' || luhn == ' '){ //Si el input esta vacio o es menor a 16 digitos entonces cambiar el color del input
+        return borderColor = document.getElementById("cn").style.borderColor = "#f73131";
     }
     else {
-       const numberCardInverse = luhn.split('').reverse();
-       
-       console.log(numberCardInverse);
-       const evenNumber = numberCardInverse.map((element, index) => {
-        if (index %2!==0){
-            evenOdd = element * 2;
-            console.log(evenOdd);
-            if (evenOdd >= 10){
-                let sumEvenOdd = evenOdd.toString(); //estan en number y lo pasamos a string para separarlos y sumar los indices
-                console.log(sumEvenOdd);
-                newDigit = parseInt(sumEvenOdd[0]) + parseInt(sumEvenOdd[1]); //se convierte en numero cada indice del string
-                // console.log(newDigit);
-                // console.log(digits);
-                return newDigit;
+       const numberCardInverse = luhn.split('').reverse(); //se declara una const que guardara los valores ingresados en el input agrgando el metodo split para crear un array separandolos con comillas y el metodo reverse para poner los elementos al reves
+       const evenNumber = numberCardInverse.map((element, index) => { //Se utiliza metodo map para iterar el arreglo de elementos, obteniendo elemento e indice
+        if (index %2!==0){ //Se localizan los numeros impares del arreglo ya en el arreglo se utilizo el metodo reverse
+            evenMultiply = element * 2; //Se multiplican los numeros impares
+            if (evenMultiply >= 10){ //Si el valor obtenido de la multiplicacion es mayor o igual a diez
+                let evenSum = evenMultiply.toString(); //Entonces de transforma en string para obtener el indice de estos numeros guardandolos en otra variable
+                parseInt(evenSum[0]) + parseInt(evenSum[1]); //se convierte en numero cada string para sumar 
+                return evenSum; //retorna la suma
             }
-            // console.log('convertidos',evenOdd);
-            return evenOdd;
+            return evenMultiply; //si no cumple con la condicion anterior retorna el elemento multiplicado menor a diez
         } 
         else {
-            // console.log('solito',element);
-            return parseInt(element);
+            return parseInt(element); //si no cumple con ninguna de las condiciones anteriore retorna el elemento par
         };
     });
-    
-    const sumNewDigit = evenNumber.reduce((element, initialize) => element + initialize);
-    
-    if (sumNewDigit %10===0){
-        return document.write('Tu tarjeta es válida');//Si el residuo de dividirlo entre 10 es 0
-      }else{
-        return document.write('Tu tarjeta es inválida') //Si el residuo de dividirlo entre 10 no es 0
-    }
-    console.log(sumNewDigit);
-    console.log(evenNumber);
+    const sumNewDigit = evenNumber.reduce((element, initialize) => element + initialize); //se declara un const que sera igual al arreglo de elementos anterior para sumar todos lo elemenos dentro del arreglo
+    if (sumNewDigit %10===0){ //si el modelo de los elementos del arreglo es igual a 0 entonces cumplir la siguiente sentencia
+        return borderColor = document.getElementById("cn").style.borderColor = "#46ed3d"; //Si el residuo de dividirlo entre 10 no es 0
+        // return document.write('Tu tarjeta es válida');//Si el residuo de dividirlo entre 10 es 0
+    } else {
+        return borderColor = document.getElementById("cn").style.borderColor = "#f73131"; //Si el residuo de dividirlo entre 10 no es 0
     };
+  };
 };
 
-        // for (let i of luhn){
-        //     if (i %2==0){
-        //         result = i * 2;
-        //         console.log(result);
-        //     }
-        //     // if(result >= 10){
-        //     //     result = result.toString();
-        //     //     console.log(result);
+const dateCard = date => {
+    console.log('hola soy el indice 1');
 
-        //     // }
-        // }
+};
+const securityCode = cvv => {
+    console.log('hola soy el indice 3');
+};
 
-    //    let evenNumbersCard =  numberCardInverse.filter(array => {
-    //        if(array %2==0){
-    //            result = array * 2;
-    //            console.log( result);
-    //     }
-    //     if(result >= 10){
-    //         // result = result.toString();
-    //         // console.log(result);
-    //         newDigit = result + result;
-    //         // newDigit = parseInt(result) + parseInt(result);
-    //         // console.log(newDigit);
-    //         digits.push(newDigit);
-    //         // console.log(digits);
-    //     } 
-    //     else {
-    //         newDigit = result;
-    //         digits.push(newDigit);
-    //         // console.log(newDigit);
-    //     }   
-    //    })
+const completeName = name => {
+    const fullName = name.split('');
+    console.log(fullName);
+    const arrayFullName = name.map((element, index) =>{
+        console.log(arrayFullName);
+        return arrayFullName;
 
-       
-
-
+    }) 
+    if (name == ''){
+        return borderColor = document.getElementById("name").style.borderColor = "#f73131";
+    }
+    else if(name.length >= 30){
+        return borderColor = document.getElementById("name").style.borderColor = "#f73131";
+    }
+    // else (name ==  ) {
+    //     return name.toUpperCase();
     // }
+            
 
-    // if (tdc.length===0){
-        //       return alert("Ingresa un número válido");
-        //   }else{
-        //     numberCardInverse=tdc.split(''); //cortamos la cadena que nos mandaron y la metemos en un array
-        //     numberCardInverse.reverse(); //colocamos en orden inverso el array
-        //   //aqui pondemos ver que si esta en inverso console.log(numberCardInverse);
-        //     for(i=0;i<numberCardInverse.length;i++){ //recorremos el array
-        //       if(i %2!==0){ //aqui tomamos las posiciones pares para sacar el valor
-        //         var result = 0;
-        //         result =numberCardInverse[i]*2;
-        //         if(result>=10){ //si el resultado de la multiplicación es mayor o igual a 10 sumamos sus dígitos
-        //           result= result.toString();//para separarlos lo transformamos a string
-        //           newDigit=parseInt(result[0])+parseInt(result[1]);//Sumamos cada digito regresamos a número
-        //           digits.push(newDigit); //Metemos los digitos al array digits
-        //            }else{
-        //              newDigit=result //en caso de que el resultado sea menor o igual a 10 tambien entran en result
-        //              digits.push(newDigit); //Tomamos los digitos y los metemos al array digits
-        //           }
-        //         }
-        //       else
-        //       {
-        //        var digit=parseInt(numberCardInverse[i]); // Aqui se convierte a numero todos lo que estan en posiciones no pares
-        //         digits.push(digit) //metemos al array los numeros en posiciones no pares
-        //         //console.log(digits);
-        //           }
-        //         }
-        //         for(j=0;j<digits.length;j++){
-        //           numberCardSum+=digits[j]; //sumamos todos los digitos del array digits
-        //     //      console.log(numberCardSum)
-        //           }
-        //     if (numberCardSum%10===0){
-        //         return document.write('Tu tarjeta es válida');//Si el residuo de dividirlo entre 10 es 0
-        //       }else{
-        //         return document.write('Tu tarjeta es inválida') //Si el residuo de dividirlo entre 10 no es 0
-        //         }
-        //       }
-        //     }
+ 
+};
 
 
-// };
-
-// const date = arr1 => {
-//     console.log('hola soy el indice 1');
-// };
-
-// const cvv = arr2 => {
-//     console.log('hola soy el indice 3');
-// };
-
-// const name = arr3 => {
-//     console.log('hola soy el indice 4');
-// };
-
-
-
+// Funcion que llamara a todas las demás funciones
 const validateCardDetails = element => {
     // getValueInput(formArray);
+    let luhn = formArray[0].value.trim(); //Se declara let luhn para guardar la posicion y obtener el valor del primer input
+    methodLuhn(luhn)
+    let date = formArray[1].value.trim();//Se declara let date para guardar la posicion y obtener el valor del segundo input
+    dateCard(date)
+    let cvv = formArray[2].value.trim();//Se declara let cvv para guardar la posicion y obtener el valor del tercer input
+    securityCode(cvv)
+    let name = formArray[3].value.trim();//Se declara let name para guardar la posicion y obtener el valor del cuarto input
+    completeName(name)
 
-    let luhn = formArray[0].value;
-   // console.log(luhn);
-    methodLuhn(luhn);
+    // if  (methodLuhn(luhn) && dateCard(date) && securityCode(cvv) && completeName(name)){
+    //     return true;
+    // } else {
+    //     return false;
+    // };
+    
 
 
-    // date(formArray[1]);
-    // cvv(formArray[3]);
-    // name(formArray[4]);
+    // console.log(date);
+   
+    // console.log(cvv);
+    // securityCode(cvv); //Se invoca la funcion que contiene la aprobacion del codigo de seguridad
+
+    // console.log(name);
+    // completeName(name); //Se invoca la funcion que contiene la aprobacion del nombre completo
 
 };
 
