@@ -2,6 +2,8 @@
 const form = document.querySelector("form");
 // Se declara cun const para convertir el elemento form del html en un array por medio del metodo form
 const formArray = Array.from(form);
+// let borderColor = document.getElementsByClassName("forms").value;
+// console.log(borderColor);
 // console.log(formArray); 
 let evenMultiply = 0;
 let numberCardSum = 0;
@@ -12,19 +14,31 @@ form.addEventListener("submit", e => {
   e.preventDefault();
   if (validateCardDetails(form)) {
     console.log("datos válido... enviar...");
-    return borderColor = document.getElementById("allForm").style.borderColor = "#46ed3d";
+    colorValidate(form);
   } 
   else {
     console.log("datos inválidos");
-    return borderColor = document.getElementById("allForm").style.borderColor = "blue";
+    colorValidate(form);
+    // return borderColor = document.getElementById("allForm").style.borderColor = "red";
   };
 });
+
+const colorValidate = form => {
+    if (form == true) {
+        return borderColor = document.getElementsByClassName("forms").style.borderColor = "green";
+    }
+    else {
+        return document.getElementsByClassName("forms").className = 'error'; 
+    }
+
+}
 
 // Funcion metodo luhn
 // 4485715860868875 ejemplo de numero de tarjeta para prober
 const methodLuhn = luhn => {
     if(luhn == ''|| luhn.length !== 16){ //Si el input esta vacio o es menor a 16 digitos entonces cambiar el color del input
-        return borderColor = document.getElementById("cn").style.borderColor = "red";
+        return false;
+        // return borderColor = document.getElementById("cn").style.borderColor = "red";
     }
     else {
        const numberCardInverse = luhn.split('').reverse(); //se declara una const que guardara los valores ingresados en el input agrgando el metodo split para crear un array separandolos con comillas y el metodo reverse para poner los elementos al reves
@@ -44,12 +58,12 @@ const methodLuhn = luhn => {
     });
     const sumNewDigit = evenNumber.reduce((element, initialize) => element + initialize); //se declara un const que sera igual al arreglo de elementos anterior para sumar todos lo elemenos dentro del arreglo
     if (sumNewDigit %10===0){ //si el modelo de los elementos del arreglo es igual a 0 entonces cumplir la siguiente sentencia
-        // return true;
-        return borderColor = document.getElementById("cn").style.borderColor = "#46ed3d"; //Si el residuo de dividirlo entre 10 no es 0
+        return true;
+        // return borderColor = document.getElementById("cn").style.borderColor = "#46ed3d"; //Si el residuo de dividirlo entre 10 no es 0
     } 
     else {
-        // return false;
-        return borderColor = document.getElementById("cn").style.borderColor = "red"; //Si el residuo de dividirlo entre 10 no es 0
+        return false;
+        // return borderColor = document.getElementById("cn").style.borderColor = "red"; //Si el residuo de dividirlo entre 10 no es 0
     };
   };
 };
@@ -62,47 +76,53 @@ const dateCard = date => {
     //     //     return borderColor = document.getElementById("exp").style.borderColor = "green";
     //     // }
         if (date.length !== 4){
-            return borderColor = document.getElementById("exp").style.borderColor = "#f73131";
+            return false;
+            // return borderColor = document.getElementById("exp").style.borderColor = "#f73131";
         }
         if (date == ''){
-            return borderColor = document.getElementById("exp").style.borderColor = "#f73131";
+            return false;
+            // return borderColor = document.getElementById("exp").style.borderColor = "#f73131";
         }
         else {
-            // return true;
-            return borderColor = document.getElementById("exp").style.borderColor = "#46ed3d";
+            return true;
+            // return borderColor = document.getElementById("exp").style.borderColor = "#46ed3d";
         }
     }
 // )};
 
 const securityCode = cvv => {
     if (cvv == ''){
-        return borderColor = document.getElementById("cvv").style.borderColor = "#f73131";
+        return false;
+        // return borderColor = document.getElementById("cvv").style.borderColor = "#f73131";
     }
     if (cvv.length !==  3){
-        return borderColor = document.getElementById("cvv").style.borderColor = "#f73131";
+        return false;
+        // return borderColor = document.getElementById("cvv").style.borderColor = "#f73131";
     }
     // if (cvv == 1) {
     //     return borderColor = document.getElementById("cvv").style.borderColor = "purple";
     // }
     else {
-        // return true;
-        return borderColor = document.getElementById("cvv").style.borderColor = "#46ed3d";
+        return true;
+        // return borderColor = document.getElementById("cvv").style.borderColor = "#46ed3d";
     }
 };
 
 const completeName = name => {
     if (name == ''){
-        return borderColor = document.getElementById("name").style.borderColor = "#f73131";
+        return false;
+        // return borderColor = document.getElementById("name").style.borderColor = "#f73131";
     }
     if (name.length >= 30){
-        return borderColor = document.getElementById("name").style.borderColor = "#f73131";
+        return false;
+        // return borderColor = document.getElementById("name").style.borderColor = "#f73131";
     }
     // else if(name === ' '){
     //     return borderColor = document.getElementById("name").style.borderColor = "yellow";
     // }
     else {
-        //  return true;
-        return borderColor = document.getElementById("name").style.borderColor = "#46ed3d";
+         return true;
+        // return borderColor = document.getElementById("name").style.borderColor = "#46ed3d";
     }
 };
 
@@ -119,12 +139,21 @@ const validateCardDetails = element => {
     let name = formArray[3].value.trim();//Se declara let name para guardar la posicion y obtener el valor del cuarto input
     completeName(name)
 
-    if  (methodLuhn(formArray[0]) && dateCard(formArray[1]) && securityCode(formArray[2]) && completeName(formArray[3])){
-        return true;
-
+    if (methodLuhn(luhn) == ''){
+        return false;
+    } 
+    if (dateCard(date) == ''){
+        return false;
+    } 
+    if (securityCode(cvv) == ''){
+        return false;
+    } 
+    if (completeName(name) == ''){
+        return false;
     } 
     else {
-        return false;
+        colorValidate(form);
+        return true;
     };
 };
 

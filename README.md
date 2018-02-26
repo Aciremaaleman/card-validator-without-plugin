@@ -1,3 +1,13 @@
+# Reto Validar todos los campos de una tarjeta de credito
+
+El reto más importante en el presente trabajo fue el de escribir todas das las funciones en ECMA 6,
+y llevar una logica un poco diferente al llamar a las funciones y declarar las variables ahora con let y const.
+
+El trabajar con diferentes validaciones en los inputs fue otro de los retos, entregando un producto minimo viable.
+
+Se realizo un maquetado para practicar, y dentro de un modal se encuentra el foemulario para la validación de la tarjeta.
+
+
 # Valida datos de tarjetas de crédito
 
 * **Track:** _Common Core_

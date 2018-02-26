@@ -12,44 +12,53 @@
 
 <body>
 
-    <picture class="container">
-        <source srcset="assets/images/videojuego.jpg" type="image/svg+xml">
-        <img src="assets/images/videojuego.jpg" class="img-fluid img-thumbnail" alt="...">
-    </picture>
+    <div class="container">
+        <h1 id="validateTitle">Validar Tarjeta</h1>
+        <div id="product" class="row">
+            <div class="col sm">
+                <p class="nameProduct">Nintendo switch</p>
+                <picture>
+                    <img src="assets/images/videojuego.jpg" class="img-fluid img-thumbnail" alt="...">
+                </picture>
+            </div>
+            <div>
+            </div>
+        </div>
+    </div>
 
     <!-- Button trigger modal -->
-    <button type="button" class="btn btn-primary btn-danger" data-toggle="modal" data-target="#exampleModalCenter">
+    <button id="btn-buy" type="button" class="btn btn-lg btn-dark" data-toggle="modal" data-target="#exampleModalCenter">
         Buy
     </button>
     <!-- Modal -->
     <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLongTitle">Buy it!!</h5>
+                <div id="headeModal" class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">BUY IT!!</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-            <div class="modal-body">
+            <div id="bodyModal" class="modal-body">
                 <form id="allForm">
                     <div class="form-group">
                         <label for="cn">Número de tarjeta</label>
-                        <input id="cn" name="cn" placeholder="Ingresa los 16 digitos de tu tarjeta"/>
+                        <input class="forms" id="cn" name="cn" placeholder="Ingresa los 16 digitos de tu tarjeta"/>
                     </div>
                     <div class="form-group">
                         <label for="exp">Fecha de vencimiento</label>
-                        <input id="exp" name="exp"  placeholder="Ingresa dd/mm la fecha de tu tarjeta"/>
+                        <input class="forms" id="exp" name="exp"  placeholder="Ingresa dd/mm la fecha de tu tarjeta"/>
                     </div>
                     <div class="form-group">
                         <label for="cvv">CVV</label>
-                        <input id="cvv" name="cvvNumber" size="3" placeholder="Ingresa el numero seguridad de la tarjeta"/>
+                        <input class="forms" id="cvv" name="cvvNumber" size="3" placeholder="Ingresa el numero seguridad de la tarjeta"/>
                     </div>
                     <div class="form-group">
                         <label for="name">Nombre completo</label>
-                        <input id="name" name="name" pattern="/[Aa-Zz]/" style="text-transform:uppercase;" placeholder="Ingresa tu nombre completo"/>
+                        <input class="forms" id="name" name="name" style="text-transform:uppercase;" placeholder="Ingresa tu nombre completo"/>
                     </div>
-                    <input class="btn btn-lg btn-danger" type="submit" value="Pay" />
+                    <input class="btn btn-lg btn-dark" type="submit" value="Pay" />
                 </form>
             </div>
             </div>
