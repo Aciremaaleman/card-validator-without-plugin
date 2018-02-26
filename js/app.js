@@ -21,8 +21,9 @@ form.addEventListener("submit", e => {
 });
 
 // Funcion metodo luhn
+// 4485715860868875 ejemplo de numero de tarjeta para prober
 const methodLuhn = luhn => {
-    if(luhn == '' || luhn.length !== 16){ //Si el input esta vacio o es menor a 16 digitos entonces cambiar el color del input
+    if(luhn == ''|| luhn.length !== 16){ //Si el input esta vacio o es menor a 16 digitos entonces cambiar el color del input
         return borderColor = document.getElementById("cn").style.borderColor = "red";
     }
     else {
@@ -118,12 +119,13 @@ const validateCardDetails = element => {
     let name = formArray[3].value.trim();//Se declara let name para guardar la posicion y obtener el valor del cuarto input
     completeName(name)
 
-    // if  (methodLuhn(formArray[0]) && dateCard(formArray[1]) && securityCode(formArray[2]) && completeName(formArray[3])){
-    //     return true;
+    if  (methodLuhn(formArray[0]) && dateCard(formArray[1]) && securityCode(formArray[2]) && completeName(formArray[3])){
+        return true;
 
-    // } else {
-    //     return false;
-    // };
+    } 
+    else {
+        return false;
+    };
 };
 
 
