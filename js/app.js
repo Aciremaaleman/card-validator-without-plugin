@@ -6,9 +6,6 @@ const formArray = Array.from(form);
 let evenMultiply = 0;
 let numberCardSum = 0;
 let newDigit= 0;
-// let arrayName = [];
-// let words = Array(a,b,c,d,e,f,g,h,i,j,k,l,m,n,ñ,o,p,q,r,s,t,u,v,w,x,y,z,A,B,C,D,E,F,G,H,I,J,K,L,M,N,Ñ,O,P,Q,R,S,T,U,V,W,X,Y,Z);
-
 
 // Funcion que le da el evento al boton
 form.addEventListener("submit", e => {
@@ -22,8 +19,8 @@ form.addEventListener("submit", e => {
 
 // Funcion metodo luhn
 const methodLuhn = luhn => {
-    if(luhn < 16 || luhn == '' || luhn == ' '){ //Si el input esta vacio o es menor a 16 digitos entonces cambiar el color del input
-        return borderColor = document.getElementById("cn").style.borderColor = "#f73131";
+    if(luhn == '' || luhn.length !== 16){ //Si el input esta vacio o es menor a 16 digitos entonces cambiar el color del input
+        return borderColor = document.getElementById("cn").style.borderColor = "red";
     }
     else {
        const numberCardInverse = luhn.split('').reverse(); //se declara una const que guardara los valores ingresados en el input agrgando el metodo split para crear un array separandolos con comillas y el metodo reverse para poner los elementos al reves
@@ -43,18 +40,32 @@ const methodLuhn = luhn => {
     });
     const sumNewDigit = evenNumber.reduce((element, initialize) => element + initialize); //se declara un const que sera igual al arreglo de elementos anterior para sumar todos lo elemenos dentro del arreglo
     if (sumNewDigit %10===0){ //si el modelo de los elementos del arreglo es igual a 0 entonces cumplir la siguiente sentencia
-        return borderColor = document.getElementById("cn").style.borderColor = "#46ed3d"; //Si el residuo de dividirlo entre 10 no es 0
+        return borderColor = document.getElementById("cn").style.borderColor = "green"; //Si el residuo de dividirlo entre 10 no es 0
         // return document.write('Tu tarjeta es válida');//Si el residuo de dividirlo entre 10 es 0
-    } else {
-        return borderColor = document.getElementById("cn").style.borderColor = "#f73131"; //Si el residuo de dividirlo entre 10 no es 0
+    } 
+    else {
+        return borderColor = document.getElementById("cn").style.borderColor = "red"; //Si el residuo de dividirlo entre 10 no es 0
     };
   };
 };
 
 const dateCard = date => {
     console.log('hola soy el indice 1');
+    const arrayDate = date.split('');
+    console.log(arrayDate);
+    let indexDate = arrayDate.map((element,index) => {
+        if (element[0] <= 9 || element[1] <= 2 || element[2] <= 9 || element[3] <= 9){
+            return true;
+            if (date.length !== 4){
+                return borderColor = document.getElementById("exp").style.borderColor = "#f73131";
+            }
+            if (date == ''){
+                return borderColor = document.getElementById("exp").style.borderColor = "#f73131";
+            }
+        }
+    }
+)};
 
-};
 const securityCode = cvv => {
     if (cvv == ''){
         return borderColor = document.getElementById("cvv").style.borderColor = "#f73131";
@@ -62,25 +73,24 @@ const securityCode = cvv => {
     if (cvv.length !==  3){
         return borderColor = document.getElementById("cvv").style.borderColor = "#f73131";
     }
-    if (cvv.length !== 1) {
-        return borderColor = document.getElementById("cvv").style.borderColor = "purple";
-    }
+    // if (cvv == 1) {
+    //     return borderColor = document.getElementById("cvv").style.borderColor = "purple";
+    // }
     else {
         return borderColor = document.getElementById("cvv").style.borderColor = "#46ed3d";
     }
-
 };
 
 const completeName = name => {
     if (name == ''){
         return borderColor = document.getElementById("name").style.borderColor = "#f73131";
     }
-    else if(name.length >= 30){
+    if (name.length >= 30){
         return borderColor = document.getElementById("name").style.borderColor = "#f73131";
     }
-    else if(name === ' '){
-        return borderColor = document.getElementById("name").style.borderColor = "yellow";
-    }
+    // else if(name === ' '){
+    //     return borderColor = document.getElementById("name").style.borderColor = "yellow";
+    // }
     else {
         return borderColor = document.getElementById("name").style.borderColor = "#46ed3d";
     }
@@ -104,17 +114,6 @@ const validateCardDetails = element => {
     // } else {
     //     return false;
     // };
-    
-
-
-    // console.log(date);
-   
-    // console.log(cvv);
-    // securityCode(cvv); //Se invoca la funcion que contiene la aprobacion del codigo de seguridad
-
-    // console.log(name);
-    // completeName(name); //Se invoca la funcion que contiene la aprobacion del nombre completo
-
 };
 
 // const form = document.querySelector("form");
