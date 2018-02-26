@@ -12,8 +12,13 @@
 
 <body>
 
+    <picture class="container">
+        <source srcset="assets/images/videojuego.jpg" type="image/svg+xml">
+        <img src="assets/images/videojuego.jpg" class="img-fluid img-thumbnail" alt="...">
+    </picture>
+
     <!-- Button trigger modal -->
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+    <button type="button" class="btn btn-primary btn-danger" data-toggle="modal" data-target="#exampleModalCenter">
         Buy
     </button>
     <!-- Modal -->
@@ -44,7 +49,7 @@
                         <label for="name">Nombre completo</label>
                         <input id="name" name="name" pattern="/[Aa-Zz]/" style="text-transform:uppercase;" placeholder="Ingresa tu nombre completo"/>
                     </div>
-                    <input type="submit" value="Pay" />
+                    <input class="btn btn-lg btn-danger" type="submit" value="Pay" />
                 </form>
             </div>
             </div>

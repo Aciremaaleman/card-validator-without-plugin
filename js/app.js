@@ -54,7 +54,6 @@ const methodLuhn = luhn => {
 };
 
 const dateCard = date => {
-    console.log('hola soy el indice 1');
     // const arrayDate = date.split('');
     // console.log(arrayDate);
     // let indexDate = arrayDate.map((element,index) => {

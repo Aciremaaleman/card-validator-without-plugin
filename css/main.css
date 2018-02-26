@@ -1,6 +1,8 @@
-.error{
-    border-color: red;
-}
-.success{
-    border-color: green;
+body > button {
+    margin: 30vh 0px 0px 5vh;
+};
+
+picture {
+    margin-top: 100vh;
+    margin-left: 50vh;
 }
