@@ -12,8 +12,11 @@ form.addEventListener("submit", e => {
   e.preventDefault();
   if (validateCardDetails(form)) {
     console.log("datos válido... enviar...");
-  } else {
+    return borderColor = document.getElementById("allForm").style.borderColor = "#46ed3d";
+  } 
+  else {
     console.log("datos inválidos");
+    return borderColor = document.getElementById("allForm").style.borderColor = "blue";
   };
 });
 
@@ -40,10 +43,11 @@ const methodLuhn = luhn => {
     });
     const sumNewDigit = evenNumber.reduce((element, initialize) => element + initialize); //se declara un const que sera igual al arreglo de elementos anterior para sumar todos lo elemenos dentro del arreglo
     if (sumNewDigit %10===0){ //si el modelo de los elementos del arreglo es igual a 0 entonces cumplir la siguiente sentencia
-        return borderColor = document.getElementById("cn").style.borderColor = "green"; //Si el residuo de dividirlo entre 10 no es 0
-        // return document.write('Tu tarjeta es válida');//Si el residuo de dividirlo entre 10 es 0
+        // return true;
+        return borderColor = document.getElementById("cn").style.borderColor = "#46ed3d"; //Si el residuo de dividirlo entre 10 no es 0
     } 
     else {
+        // return false;
         return borderColor = document.getElementById("cn").style.borderColor = "red"; //Si el residuo de dividirlo entre 10 no es 0
     };
   };
@@ -51,20 +55,24 @@ const methodLuhn = luhn => {
 
 const dateCard = date => {
     console.log('hola soy el indice 1');
-    const arrayDate = date.split('');
-    console.log(arrayDate);
-    let indexDate = arrayDate.map((element,index) => {
-        if (element[0] <= 9 || element[1] <= 2 || element[2] <= 9 || element[3] <= 9){
-            return true;
-            if (date.length !== 4){
-                return borderColor = document.getElementById("exp").style.borderColor = "#f73131";
-            }
-            if (date == ''){
-                return borderColor = document.getElementById("exp").style.borderColor = "#f73131";
-            }
+    // const arrayDate = date.split('');
+    // console.log(arrayDate);
+    // let indexDate = arrayDate.map((element,index) => {
+    //     // if (element[0] <= 9 || element[1] <= 2 || element[2] <= 9 || element[3] <= 9){
+    //     //     return borderColor = document.getElementById("exp").style.borderColor = "green";
+    //     // }
+        if (date.length !== 4){
+            return borderColor = document.getElementById("exp").style.borderColor = "#f73131";
+        }
+        if (date == ''){
+            return borderColor = document.getElementById("exp").style.borderColor = "#f73131";
+        }
+        else {
+            // return true;
+            return borderColor = document.getElementById("exp").style.borderColor = "#46ed3d";
         }
     }
-)};
+// )};
 
 const securityCode = cvv => {
     if (cvv == ''){
@@ -77,6 +85,7 @@ const securityCode = cvv => {
     //     return borderColor = document.getElementById("cvv").style.borderColor = "purple";
     // }
     else {
+        // return true;
         return borderColor = document.getElementById("cvv").style.borderColor = "#46ed3d";
     }
 };
@@ -92,6 +101,7 @@ const completeName = name => {
     //     return borderColor = document.getElementById("name").style.borderColor = "yellow";
     // }
     else {
+        //  return true;
         return borderColor = document.getElementById("name").style.borderColor = "#46ed3d";
     }
 };
@@ -109,70 +119,12 @@ const validateCardDetails = element => {
     let name = formArray[3].value.trim();//Se declara let name para guardar la posicion y obtener el valor del cuarto input
     completeName(name)
 
-    // if  (methodLuhn(luhn) && dateCard(date) && securityCode(cvv) && completeName(name)){
+    // if  (methodLuhn(formArray[0]) && dateCard(formArray[1]) && securityCode(formArray[2]) && completeName(formArray[3])){
     //     return true;
+
     // } else {
     //     return false;
     // };
 };
 
-// const form = document.querySelector("form");
-// const arrayInfo=Array.from(form);
-// const arrayOne=[];
-// console.log(arrayInfo);
 
-// form.addEventListener("submit", e => {
-//  e.preventDefault();
-//  if (validateCardDetails(form)) {
-//    console.log("datos válido... enviar...");
-//  } else {
-//    console.log("datos inválidos");
-//  }
-// });
-
-
-// const getArrayInfo=array=>{
-//    array.forEach(e=>arrayOne.push(e.value));
-//    console.log(arrayOne);
-//    return arrayOne;
-// }
-
-// const cardNumber=index=>{
-//    console.log(index);
-//    return true;
-// }
-
-// const expire=index=>{
-//    console.log(index);
-//    return true
-// }
-
-// const securityCode=index=>{
-//    console.log(index);
-//    return true
-// }
-
-// const name=index=>{
-//    console.log(index);
-//    return true;
-   
-// }
-
-
-
-
-// const validateCardDetails=array=> {
-   
-// getArrayInfo(arrayInfo);
-   
-//  if(cardNumber(arrayOne[0]) && expire(arrayOne[1])&&
-//  securityCode(arrayOne[2]) &&name(arrayOne[3])) {
-//    console.log(true);  
-//    return true;
-     
-//  }else{
-//      console.log(false);
-//      return false;
-//  }
-
-// };
