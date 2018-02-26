@@ -14,31 +14,32 @@ form.addEventListener("submit", e => {
   e.preventDefault();
   if (validateCardDetails(form)) {
     console.log("datos válido... enviar...");
-    colorValidate(form);
+    // colorValidate(form);
   } 
   else {
     console.log("datos inválidos");
-    colorValidate(form);
+    // colorValidate(form);
     // return borderColor = document.getElementById("allForm").style.borderColor = "red";
   };
 });
 
-const colorValidate = form => {
-    if (form == true) {
-        return borderColor = document.getElementsByClassName("forms").style.borderColor = "green";
-    }
-    else {
-        return document.getElementsByClassName("forms").className = 'error'; 
-    }
+// const colorValidate = form => {
+//     if (formArray == true) {
+//         alert('success');
+//        form.style.borderColor = "green";
+//     }
+//     else {
+//        form.className = 'error'; 
+//     }
 
-}
+// }
 
 // Funcion metodo luhn
 // 4485715860868875 ejemplo de numero de tarjeta para prober
 const methodLuhn = luhn => {
     if(luhn == ''|| luhn.length !== 16){ //Si el input esta vacio o es menor a 16 digitos entonces cambiar el color del input
+        document.getElementById("cn").classList.add('error');
         return false;
-        // return borderColor = document.getElementById("cn").style.borderColor = "red";
     }
     else {
        const numberCardInverse = luhn.split('').reverse(); //se declara una const que guardara los valores ingresados en el input agrgando el metodo split para crear un array separandolos con comillas y el metodo reverse para poner los elementos al reves
@@ -58,10 +59,12 @@ const methodLuhn = luhn => {
     });
     const sumNewDigit = evenNumber.reduce((element, initialize) => element + initialize); //se declara un const que sera igual al arreglo de elementos anterior para sumar todos lo elemenos dentro del arreglo
     if (sumNewDigit %10===0){ //si el modelo de los elementos del arreglo es igual a 0 entonces cumplir la siguiente sentencia
-        return true;
+        document.getElementById("cn").classList.add('success');
         // return borderColor = document.getElementById("cn").style.borderColor = "#46ed3d"; //Si el residuo de dividirlo entre 10 no es 0
+        return true;
     } 
     else {
+        document.getElementById("cn").classList.add('error');
         return false;
         // return borderColor = document.getElementById("cn").style.borderColor = "red"; //Si el residuo de dividirlo entre 10 no es 0
     };
@@ -76,14 +79,17 @@ const dateCard = date => {
     //     //     return borderColor = document.getElementById("exp").style.borderColor = "green";
     //     // }
         if (date.length !== 4){
+            document.getElementById("exp").classList.add('error');
             return false;
             // return borderColor = document.getElementById("exp").style.borderColor = "#f73131";
         }
         if (date == ''){
+            document.getElementById("exp").classList.add('error');
             return false;
             // return borderColor = document.getElementById("exp").style.borderColor = "#f73131";
         }
         else {
+            document.getElementById("exp").classList.add('success');
             return true;
             // return borderColor = document.getElementById("exp").style.borderColor = "#46ed3d";
         }
@@ -91,18 +97,27 @@ const dateCard = date => {
 // )};
 
 const securityCode = cvv => {
-    if (cvv == ''){
+    cvv = parseInt(cvv);
+    if (cvv == '') {
+        document.getElementById("cvv").classList.add('error');
         return false;
         // return borderColor = document.getElementById("cvv").style.borderColor = "#f73131";
     }
-    if (cvv.length !==  3){
+    if (cvv < 100 || cvv > 999){
+        document.getElementById("cvv").classList.add('error');
         return false;
-        // return borderColor = document.getElementById("cvv").style.borderColor = "#f73131";
     }
-    // if (cvv == 1) {
-    //     return borderColor = document.getElementById("cvv").style.borderColor = "purple";
+    // if (isNan(cvv)){
+    //     document.getElementById("cvv").classList.add('error');
+    //     return false;
+    // }
+    // if (cvv.length !==  3){
+    //     document.getElementById("cvv").classList.add('error');
+    //     return false;
+    //     // return borderColor = document.getElementById("cvv").style.borderColor = "#f73131";
     // }
     else {
+        document.getElementById("cvv").classList.add('success');
         return true;
         // return borderColor = document.getElementById("cvv").style.borderColor = "#46ed3d";
     }
@@ -110,17 +125,17 @@ const securityCode = cvv => {
 
 const completeName = name => {
     if (name == ''){
+        document.getElementById("name").classList.add('error');
         return false;
         // return borderColor = document.getElementById("name").style.borderColor = "#f73131";
     }
     if (name.length >= 30){
+        document.getElementById("name").classList.add('error');
         return false;
         // return borderColor = document.getElementById("name").style.borderColor = "#f73131";
     }
-    // else if(name === ' '){
-    //     return borderColor = document.getElementById("name").style.borderColor = "yellow";
-    // }
     else {
+        document.getElementById("name").classList.add('success');
          return true;
         // return borderColor = document.getElementById("name").style.borderColor = "#46ed3d";
     }
@@ -152,7 +167,7 @@ const validateCardDetails = element => {
         return false;
     } 
     else {
-        colorValidate(form);
+        // colorValidate(form);
         return true;
     };
 };
